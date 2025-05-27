@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hello World! &mdash; Pedantic Journal</title>
+  <meta name="author" content="Guy Gregory">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Pedantic Journal</a></h1>
+    <h2>Thoughts on AI and other subjects.</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+      <li class="active">
+        <a href="/category/blog.html">Blog</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Hello World!</h1>
+    <p class="meta">
+<time datetime="2025-05-24T00:00:00+01:00" pubdate>Sat 24 May 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><p>Welcome to my new Pelican blog!</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">AzureOpenAI</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_KEY&quot;</span><span class="p">],</span>  
+    <span class="n">api_version</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_VERSION&quot;</span><span class="p">],</span>
+    <span class="n">azure_endpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_ENDPOINT&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_MODEL&quot;</span><span class="p">],</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Tell me a joke.&quot;</span>
+
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="Madejski Stadium Aerial, August 2014" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Madejski_Stadium_aerial%2C_August_2014_%28cropped%29.jpg/500px-Madejski_Stadium_aerial%2C_August_2014_%28cropped%29.jpg"></p>
+<p><a href="https://www.google.com" target="_blank" rel="noopener">Google</a></p>
+<script>
+function updateUKTime() {
+    const ukTime = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
+    document.getElementById('uk-time').textContent = ukTime;
+}
+setInterval(updateUKTime, 1000);
+window.onload = updateUKTime;
+</script>
+
+<p><strong>Current UK Time:</strong> <span id="uk-time"></span></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ceV3RsG946s?si=np6Bl53Pa8sqFmgM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Guy Gregory
+    </span>
+  </span>
+<time datetime="2025-05-24T00:00:00+01:00" pubdate>Sat 24 May 2025</time>  <span class="categories">
+    <a class='category' href='/category/blog.html'>Blog</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/intro.html">intro</a>,    <a class="category" href="/tag/pelican.html">pelican</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/first-post.html">Hello World!</a>
+      </li>
+      <li class="post">
+          <a href="/function-calling-voice.html">Function calling with voice</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/intro.html">intro</a>,    <a href="/tag/pelican.html">pelican</a>,    <a href="/tag/azureai.html">azureai</a>,    <a href="/tag/voice.html">voice</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://linkedin.com/in/guygregory" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/guygregory" target="_blank">GitHub</a></li>
+            <li><a href="https://x.com/guygregory" target="_blank">X</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2024&ndash;2025  Guy Gregory &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
