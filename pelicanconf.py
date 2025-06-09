@@ -9,7 +9,10 @@ MENUITEMS = [
 ]
 
 PATH = "content"
+OUTPUT_PATH = 'docs/'
+
 PAGE_PATHS = ['pages']
+
 
 # Clean URLs
 ARTICLE_URL = '{slug}/'
