@@ -1,5 +1,6 @@
 Title: Hello World!
 Date: 2025-06-09
+Status: hidden
 Category: Blog
 Tags: intro, pelican
 Slug: test
