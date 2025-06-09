@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pedantic Journal - pelican</title><link href="https://pedanticjournal.com/" rel="alternate"></link><link href="https://pedanticjournal.com/feeds/tag/pelican.atom.xml" rel="self"></link><id>https://pedanticjournal.com/</id><updated>2025-05-24T00:00:00+01:00</updated><subtitle>Thoughts on AI and other subjects.</subtitle><entry><title>Hello World!</title><link href="https://pedanticjournal.com/first-post/" rel="alternate"></link><published>2025-05-24T00:00:00+01:00</published><updated>2025-05-24T00:00:00+01:00</updated><author><name>Guy Gregory</name></author><id>tag:pedanticjournal.com,2025-05-24:/first-post/</id><summary type="html">&lt;p&gt;A quick intro post.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to my new Pelican blog!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;openai&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AzureOpenAI&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dotenv&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_dotenv&lt;/span&gt;
+
+&lt;span class="n"&gt;load_dotenv&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AzureOpenAI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;api_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AZURE_OPENAI_API_KEY&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  
+    &lt;span class="n"&gt;api_version&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AZURE_OPENAI_API_VERSION&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;azure_endpoint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AZURE_OPENAI_API_ENDPOINT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;responses&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AZURE_OPENAI_API_MODEL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell me a joke.&amp;quot;&lt;/span&gt;
+
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;output_text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="Madejski Stadium Aerial, August 2014" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Madejski_Stadium_aerial%2C_August_2014_%28cropped%29.jpg/500px-Madejski_Stadium_aerial%2C_August_2014_%28cropped%29.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.google.com" target="_blank" rel="noopener"&gt;Google&lt;/a&gt;&lt;/p&gt;
+&lt;script&gt;
+function updateUKTime() {
+    const ukTime = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
+    document.getElementById('uk-time').textContent = ukTime;
+}
+setInterval(updateUKTime, 1000);
+window.onload = updateUKTime;
+&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Current UK Time:&lt;/strong&gt; &lt;span id="uk-time"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/ceV3RsG946s?si=np6Bl53Pa8sqFmgM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;&lt;/iframe&gt;</content><category term="Blog"></category><category term="intro"></category><category term="pelican"></category></entry></feed>
