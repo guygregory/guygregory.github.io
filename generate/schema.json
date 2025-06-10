@@ -1,0 +1,57 @@
+{
+  "name": "blog_post",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "The title of the blog post"
+      },
+      "date": {
+        "type": "string",
+        "format": "date",
+        "description": "Publication date in YYYY-MM-DD format"
+      },
+      "category": {
+        "type": "string",
+        "description": "The category under which this post is filed"
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "A list of tags for this post"
+      },
+      "slug": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "description": "URL‐safe identifier for the post"
+      },
+      "author": {
+        "type": "string",
+        "description": "Name of the post’s author"
+      },
+      "summary": {
+        "type": "string",
+        "description": "Short summary or excerpt of the post"
+      },
+      "body": {
+        "type": "string",
+        "description": "Full content of the post (e.g. Markdown)"
+      }
+    },
+    "required": [
+      "title",
+      "date",
+      "category",
+      "tags",
+      "slug",
+      "author",
+      "summary",
+      "body"
+    ],
+    "additionalProperties": false
+  }
+}

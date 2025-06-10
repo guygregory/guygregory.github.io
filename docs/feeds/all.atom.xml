@@ -69,4 +69,25 @@ window.onload = updateUKTime;
 &lt;p&gt;8. Creating a prompt for the Realtime API is similar to doing it for text/image, but requires a bit of practice to get right. Especially when it comes to timing, and ensuring the AI doesn't go off-script.&lt;/p&gt;
 &lt;p&gt;9. It's worth noting that gpt-4o-realtime-preview is free on Azure OpenAI until the end of October 2024, so now is a great time to experiment with it.&lt;/p&gt;
 &lt;p&gt;10. Finally, I haven't been able to get my demo working flawlessly every time yet - I think due to some bugs in my function calls (I'm honestly not an expert developer). I probably need to focus on tightening up the output of the function call to ensure that the tool provides the AI assistant with a more predicable, strictly defined format. However, I'm delighted that I managed to build something that works this well in only a single day of coding.&lt;/p&gt;
-&lt;p&gt;To wrap up, even though this new Realtime API service is in preview, I think the extensibility aspect opens up some very exciting scenarios, and allows for relatively simple integration with existing systems. If you're a Microsoft partner looking to use this new feature to solve a customer challenge, I'd love to hear from you - please feel to drop me a message on here. Thanks for reading!&lt;/p&gt;</content><category term="Blog"></category><category term="azureai"></category><category term="voice"></category></entry></feed>
+&lt;p&gt;To wrap up, even though this new Realtime API service is in preview, I think the extensibility aspect opens up some very exciting scenarios, and allows for relatively simple integration with existing systems. If you're a Microsoft partner looking to use this new feature to solve a customer challenge, I'd love to hear from you - please feel to drop me a message on here. Thanks for reading!&lt;/p&gt;</content><category term="Blog"></category><category term="azureai"></category><category term="voice"></category></entry><entry><title>"Unlocking Innovation with Azure AI Foundry"</title><link href="https://pedanticjournal.com/azure-ai-foundry-overview/" rel="alternate"></link><published>2023-10-01T00:00:00+01:00</published><updated>2023-10-01T00:00:00+01:00</updated><author><name>Alexis Developer</name></author><id>tag:pedanticjournal.com,2023-10-01:/azure-ai-foundry-overview/</id><summary type="html">&lt;p&gt;"Explore the cutting-edge advancements enabled by Azure AI Foundry, Microsoft's hub for leveraging AI technologies."&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Unlocking Innovation with Azure AI Foundry&lt;/h2&gt;
+&lt;p&gt;Azure AI Foundry represents a significant advancement in creating and deploying artificial intelligence solutions. As a Microsoft initiative, this hub provides resources for organizations to integrate AI seamlessly into their workflows.&lt;/p&gt;
+&lt;h3&gt;Key Features&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Pre-trained Models&lt;/strong&gt;:
+   Azure AI Foundry offers pre-packaged models tailored for common business scenarios, reducing deployment times.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Custom AI Development&lt;/strong&gt;:
+   Developers can build unique AI-driven applications, leveraging Azure's powerful cloud infrastructure.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Integration Tools&lt;/strong&gt;:
+   Streamline integration with existing systems using Azure's suite of APIs and connectors.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Why Choose Azure AI Foundry?&lt;/h3&gt;
+&lt;p&gt;The platform combines scalable computation power with strong data security standards, ensuring business-critical operations remain both efficient and protected.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Azure AI Foundry is ideal for businesses aiming to integrate advanced AI capabilities, fostering innovation and operational efficiencies.&lt;/p&gt;
+&lt;p&gt;Discover how this platform can transform your AI projects today.&lt;/p&gt;</content><category term="Artificial Intelligence"></category><category term="['Azure'"></category><category term="'AI'"></category><category term="'Machine Learning'"></category><category term="'Cloud Computing']"></category></entry></feed>
