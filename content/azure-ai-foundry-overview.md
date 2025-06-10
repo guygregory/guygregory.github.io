@@ -4,7 +4,7 @@ category: Artificial Intelligence
 tags: ['Azure', 'AI', 'Machine Learning', 'Cloud Computing']
 slug: azure-ai-foundry-overview
 author: Alexis Developer
-summary: "Explore the cutting-edge advancements enabled by Azure AI Foundry, Microsoft's hub for leveraging AI technologies."
+summary: Explore the cutting-edge advancements enabled by Azure AI Foundry, Microsoft's hub for leveraging AI technologies.
 
 ## Unlocking Innovation with Azure AI Foundry
 
