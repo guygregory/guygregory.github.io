@@ -1,0 +1,29 @@
+name: Build static site
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install pelican markdown
+      - name: Generate static HTML
+        run: pelican content -s publishconf.py
+      - name: Ensure CNAME file
+        run: echo 'pedanticjournal.com' > docs/CNAME
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs'
+          message: 'Automated site build'
