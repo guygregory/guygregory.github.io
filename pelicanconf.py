@@ -6,6 +6,7 @@ SITEURL = "https://pedanticjournal.com"
 MENUITEMS = [
     ('Home', '/'),
     ('About', '/about.html'),
+    ('Atom', '/atom.html'),
 ]
 
 PATH = "content"
@@ -42,10 +43,9 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ("Pelican", "https://getpelican.com/"),
-    ("Python.org", "https://www.python.org/"),
-    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
+    ("Azure AI Foundry Blog", "https://devblogs.microsoft.com/foundry/"),
+    ("Microsoft Azure Blog", "https://azure.microsoft.com/blog/"),
+    ("Microsoft UK Stories", "https://ukstories.microsoft.com/"),
 )
 
 # Social widget
