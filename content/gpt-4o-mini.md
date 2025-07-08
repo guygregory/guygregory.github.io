@@ -1,4 +1,4 @@
-Title: GPT-4o mini available via Azure OpenAI API
+Title: GPT-4o mini available in Azure OpenAI
 Date: 2024-08-01
 Category: Blog
 Tags: azureai, openai
