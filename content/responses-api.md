@@ -1,4 +1,4 @@
-Title: Responses API now on Azure OpenAI
+Title: Responses API on Azure OpenAI
 Date: 2025-03-11
 Category: Blog
 Tags: azureai, openai
@@ -11,16 +11,16 @@ The Responses API is a new stateful API from OpenAI. It brings together the best
 I've shared some basic code samples on my [GitHub repo](https://aka.ms/ResponsesAPI) for those who want to get started using Responses API on Azure OpenAI:
 
 Responses API GitHub repo:<br>
-https://aka.ms/ResponsesAPI
+[https://aka.ms/ResponsesAPI](https://aka.ms/ResponsesAPI)
 
 Microsoft Learn Documentation:<br>
-https://aka.ms/ResponsesAPI/Docs
+[https://aka.ms/ResponsesAPI/Docs](https://aka.ms/ResponsesAPI/Docs)
 
 Announcement blog post:<br>
-https://azure.microsoft.com/blog/announcing-the-responses-api-and-computer-using-agent-in-azure-ai-foundry/
+[https://azure.microsoft.com/blog/announcing-the-responses-api-and-computer-using-agent-in-azure-ai-foundry/](https://azure.microsoft.com/blog/announcing-the-responses-api-and-computer-using-agent-in-azure-ai-foundry/)
 
 Request access to the computer-use-preview model:<br>
-https://aka.ms/oai/cuaaccess
+[https://aka.ms/oai/cuaaccess](https://aka.ms/oai/cuaaccess)
 
 Here's a basic example from the [repo](https://aka.ms/ResponsesAPI):
 
