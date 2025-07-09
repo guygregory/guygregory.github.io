@@ -14,6 +14,8 @@ OUTPUT_PATH = 'docs/'
 
 PAGE_PATHS = ['pages']
 
+STATIC_PATHS = ['images']
+
 EXTRA_PATH_METADATA = {
     'images/favicon.ico': {'path': 'favicon.ico'},
 }
