@@ -14,6 +14,9 @@ OUTPUT_PATH = 'docs/'
 
 PAGE_PATHS = ['pages']
 
+EXTRA_PATH_METADATA = {
+    'images/favicon.ico': {'path': 'favicon.ico'},
+}
 
 # Clean URLs
 ARTICLE_URL = '{slug}/'
