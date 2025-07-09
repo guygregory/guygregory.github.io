@@ -14,14 +14,6 @@ OUTPUT_PATH = 'docs/'
 
 PAGE_PATHS = ['pages']
 
-FAVICON_FILENAME = '/images/favicon.ico'
-
-STATIC_PATHS = ['images']
-
-EXTRA_PATH_METADATA = {
-    'images/favicon.ico': {'path': 'favicon.ico'},
-}
-
 # Clean URLs
 ARTICLE_URL = '{slug}/'
 ARTICLE_SAVE_AS = '{slug}/index.html'
