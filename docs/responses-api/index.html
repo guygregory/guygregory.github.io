@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>GPT-4o mini available in Azure OpenAI &mdash; Pedantic Journal</title>
+  <title>Responses API now on Azure OpenAI &mdash; Pedantic Journal</title>
   <meta name="author" content="Guy Gregory">
 
 
@@ -51,17 +51,42 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">GPT-4o mini available in Azure OpenAI</h1>
+      <h1 class="entry-title">Responses API now on Azure OpenAI</h1>
     <p class="meta">
-<time datetime="2024-08-01T00:00:00+01:00" pubdate>Thu 01 August 2024</time>    </p>
+<time datetime="2025-03-11T00:00:00+00:00" pubdate>Tue 11 March 2025</time>    </p>
 </header>
 
-  <div class="entry-content"><p><a href="https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/openai-s-gpt-4o-mini-now-available-in-api-with-vision/ba-p/4200640">GPT-4o mini can now be deployed in the East US Azure region</a>, with more regions coming soon. Having been available in preview for the last week via the Early Access Playground, partners and customers can now access GPT-4o mini via the Azure OpenAI API.</p>
-<p>This new, smaller version of OpenAI's GPT-4o model offers speed, capability, vision, 128k context window, all at a fraction of the cost of the standard GPT-4o model - and even cheaper than GPT-3.5 Turbo.</p>
-<p>GPT-4o mini will initially be available in Standard Global, and Standard Regional <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/deployment-types">deployment types</a>, with Batch, and Provisioned coming soon. Standard Global pricing is a staggering $0.15 per 1M tokens for input, and $0.60 per 1M tokens for output.</p>
-<p>Based on my own experience using GPT-4o mini in the Azure OpenAI Playground, and also how strongly it's scoring on independent evaluations, I'm convinced that it's going to quickly become the most popular model in the Azure OpenAI Service.</p>
-<p><img alt="image" src="https://github.com/user-attachments/assets/e2626dd4-31f4-4e2a-b03c-f859e314c3ea"></p>
-<p>If you want to try GPT-4o mini yourself, try deploying the model in <a href="https://oai.azure.com/">Azure OpenAI Studio</a>, or use one of the many <a href="https://github.com/Azure-Samples/">code samples on GitHub</a>. If you've never used the Azure OpenAI Service before, you'll be pleased to know that last month, the signup process was streamlined, removing the need to submit a manual form for access.</p></div>
+  <div class="entry-content"><p>The Responses API is a new stateful API from OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new computer-use-preview model which powers the Computer use capability.</p>
+<p>I've shared some basic code samples on my <a href="https://aka.ms/ResponsesAPI">GitHub repo</a> for those who want to get started using Responses API on Azure OpenAI:</p>
+<p>Responses API GitHub repo:<br>
+https://aka.ms/ResponsesAPI</p>
+<p>Microsoft Learn Documentation:<br>
+https://aka.ms/ResponsesAPI/Docs</p>
+<p>Announcement blog post:<br>
+https://azure.microsoft.com/blog/announcing-the-responses-api-and-computer-using-agent-in-azure-ai-foundry/</p>
+<p>Request access to the computer-use-preview model:<br>
+https://aka.ms/oai/cuaaccess</p>
+<p>Here's a basic example from the <a href="https://aka.ms/ResponsesAPI">repo</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">AzureOpenAI</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_KEY&quot;</span><span class="p">],</span>  
+    <span class="n">api_version</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_VERSION&quot;</span><span class="p">],</span>
+    <span class="n">azure_endpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_ENDPOINT&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_MODEL&quot;</span><span class="p">],</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Tell me a joke.&quot;</span>
+
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</code></pre></div></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -69,7 +94,7 @@
         Guy Gregory
     </span>
   </span>
-<time datetime="2024-08-01T00:00:00+01:00" pubdate>Thu 01 August 2024</time>  <span class="categories">
+<time datetime="2025-03-11T00:00:00+00:00" pubdate>Tue 11 March 2025</time>  <span class="categories">
     <a class='category' href='https://pedanticjournal.com/category/blog/'>Blog</a>
   </span>
   <span class="categories">
