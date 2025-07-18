@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Responses API on Azure OpenAI &mdash; Pedantic Journal</title>
+  <title>Test2 &mdash; Pedantic Journal</title>
   <meta name="author" content="Guy Gregory">
 
 
@@ -51,42 +51,12 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Responses API on Azure OpenAI</h1>
+      <h1 class="entry-title">Test2</h1>
     <p class="meta">
-<time datetime="2025-03-11T00:00:00+00:00" pubdate>Tue 11 March 2025</time>    </p>
+<time datetime="2025-07-18T00:00:00+01:00" pubdate>Fri 18 July 2025</time>    </p>
 </header>
 
-  <div class="entry-content"><p>The Responses API is a new stateful API from OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new computer-use-preview model which powers the Computer use capability.</p>
-<p>I've shared some basic code samples on my <a href="https://aka.ms/ResponsesAPI">GitHub repo</a> for those who want to get started using Responses API on Azure OpenAI:</p>
-<p>Responses API GitHub repo:<br>
-<a href="https://aka.ms/ResponsesAPI">https://aka.ms/ResponsesAPI</a></p>
-<p>Microsoft Learn Documentation:<br>
-<a href="https://aka.ms/ResponsesAPI/Docs">https://aka.ms/ResponsesAPI/Docs</a></p>
-<p>Announcement blog post:<br>
-<a href="https://azure.microsoft.com/blog/announcing-the-responses-api-and-computer-using-agent-in-azure-ai-foundry/">https://azure.microsoft.com/blog/announcing-the-responses-api-and-computer-using-agent-in-azure-ai-foundry/</a></p>
-<p>Request access to the computer-use-preview model:<br>
-<a href="https://aka.ms/oai/cuaaccess">https://aka.ms/oai/cuaaccess</a></p>
-<p>Here's a basic example from the <a href="https://aka.ms/ResponsesAPI">repo</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">AzureOpenAI</span>
-<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_KEY&quot;</span><span class="p">],</span>  
-    <span class="n">api_version</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_VERSION&quot;</span><span class="p">],</span>
-    <span class="n">azure_endpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_ENDPOINT&quot;</span><span class="p">]</span>
-    <span class="p">)</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_MODEL&quot;</span><span class="p">],</span>
-    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Tell me a joke.&quot;</span>
-
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
-</code></pre></div></div>
+  <div class="entry-content"><p>This is a test</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -94,7 +64,7 @@
         Guy Gregory
     </span>
   </span>
-<time datetime="2025-03-11T00:00:00+00:00" pubdate>Tue 11 March 2025</time>  <span class="categories">
+<time datetime="2025-07-18T00:00:00+01:00" pubdate>Fri 18 July 2025</time>  <span class="categories">
     <a class='category' href='https://pedanticjournal.com/category/blog/'>Blog</a>
   </span>
   <span class="categories">
