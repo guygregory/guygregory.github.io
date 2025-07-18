@@ -1,2 +1,5 @@
+# These requirements are used by this GitHub Action: https://github.com/guygregory/guygregory.github.io/blob/main/.github/workflows/build-site.yml
+# any change to this file will reset the dependency cache
+
 pelican
 Markdown
