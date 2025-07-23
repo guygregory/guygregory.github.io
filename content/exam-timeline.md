@@ -27,7 +27,7 @@ response.raise_for_status()
 return response.json()
 ```
 
-If you want to try this yourself, just remember: your Microsoft transcript may contain sensitive personal information, like your name and email address. Thankfully, [Microsoft Learn]((https://learn.microsoft.com/users/me/transcript) lets you adjust this before sharing anything publicly.
+If you want to try this yourself, just remember: your Microsoft transcript may contain sensitive personal information, like your name and email address. Thankfully, [Microsoft Learn](https://learn.microsoft.com/users/me/transcript) lets you adjust this before sharing anything publicly.
 
 <img width="756" height="452" alt="image" src="https://github.com/user-attachments/assets/ccaca094-8d3f-41e5-9095-1d145bb80559" />
 
