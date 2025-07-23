@@ -15,6 +15,6 @@
 &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you want to try this yourself, just remember: your Microsoft transcript may contain sensitive personal information, like your name and email address. Thankfully, [Microsoft Learn]((https://learn.microsoft.com/users/me/transcript) lets you adjust this before sharing anything publicly.&lt;/p&gt;
+&lt;p&gt;If you want to try this yourself, just remember: your Microsoft transcript may contain sensitive personal information, like your name and email address. Thankfully, &lt;a href="https://learn.microsoft.com/users/me/transcript"&gt;Microsoft Learn&lt;/a&gt; lets you adjust this before sharing anything publicly.&lt;/p&gt;
 &lt;p&gt;&lt;img width="756" height="452" alt="image" src="https://github.com/user-attachments/assets/ccaca094-8d3f-41e5-9095-1d145bb80559" /&gt;&lt;/p&gt;
 &lt;p&gt;Whether you’re looking to track your own certification milestones, show off your progress, or just experiment with Python, GitHub Actions, and Azure Static Websites, I hope my little &lt;code&gt;exam-timeline&lt;/code&gt; project inspires you to take pride in your learning journey. Contributions welcome - let’s celebrate our wins together!&lt;/p&gt;</content><category term="Blog"/><category term="github"/><category term="mslearn"/><category term="azure"/></entry></feed>
