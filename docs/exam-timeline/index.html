@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Visualising Microsoft exams &mdash; Pedantic Journal</title>
+  <meta name="author" content="Guy Gregory">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://pedanticjournal.com/images/favicon.png" rel="icon">
+
+  <link href="https://pedanticjournal.com/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="https://pedanticjournal.com/">Pedantic Journal</a></h1>
+    <h2>Thoughts on AI and other subjects.</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/atom.html">Atom</a></li>
+      <li class="active">
+        <a href="https://pedanticjournal.com/category/blog/">Blog</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Visualising Microsoft exams</h1>
+    <p class="meta">
+<time datetime="2025-07-23T00:00:00+01:00" pubdate>Wed 23 July 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><p><a href="https://exams.guygregory.com" target="_blank" rel="noopener noreferrer"><img width="1802" height="723" alt="image" src="https://github.com/user-attachments/assets/4f00d296-6e40-45fe-a6b1-1b4354264d7f"/></a></p>
+<p>After over 20 years spent earning Microsoft certifications, and with my recent success on the GH-900 exam—I started reflecting on just how far I’ve come. That’s when the idea for <a href="https://github.com/guygregory/exam-timeline"><code>exam-timeline</code></a> was born. I wanted a fun, interactive way to visualise my certification journey and maybe inspire others who are on a similar path. There’s something satisfying about seeing all those milestones lined up, and I thought: why not make it easy for anyone to do the same?</p>
+<p>The initial prototype came together in under half an hour of vibe-coding, thanks to GitHub Copilot for the coding assist and Azure Static Websites for the super-quick deployment and GitHub integration. From there, I spent a few more hours automating the access to exam data, and wiring up GitHub Actions - mainly delegating the hard work to the GitHub Coding Agent. The end result is a project that’s both personal and practical, with a workflow that anyone can replicate.</p>
+<p>Here’s how it all works: at its core, the project uses a <a href="https://github.com/guygregory/exam-timeline/blob/main/passed_exams.py">Python script</a> to download your Microsoft certification transcript, based on your <a href="https://learn.microsoft.com/users/me/transcript">Transcript sharing code</a>. You can run this script independently if you just want a quick export for your own records or to feed into another tool. But if you’re feeling ambitious, you can <a href="https://github.com/guygregory/exam-timeline">clone the entire repo</a>, customise it, and deploy your own exam timeline website in minutes. The automation pipeline fetches your latest transcript, updates the timeline, and pushes the changes live with minimal fuss.</p>
+<div class="highlight"><pre><span></span><code><span class="n">API_ENDPOINT_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;https://learn.microsoft.com/api/profiles/transcript/share/</span><span class="si">{share_id}</span><span class="s2">?locale=</span><span class="si">{locale}</span><span class="s2">&quot;</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">API_ENDPOINT_TEMPLATE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">share_id</span><span class="o">=</span><span class="n">share_id</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="n">locale</span><span class="p">)</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="c1"># Provide a User‑Agent to avoid potential filtering of generic requests</span>
+     <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (compatible; MSFTTranscriptFetcher/1.0)&quot;</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+
+<p>If you want to try this yourself, just remember: your Microsoft transcript may contain sensitive personal information, like your name and email address. Luckily, Microsoft Learn lets you adjust this before sharing anything publicly.</p>
+<p><img width="756" height="452" alt="image" src="https://github.com/user-attachments/assets/ccaca094-8d3f-41e5-9095-1d145bb80559" /></p>
+<p>Whether you’re looking to track your own certification milestones, show off your progress, or just experiment with Python, GitHub Actions, and Azure Static Websites, I hope my fun <code>exam-timeline</code> inspires you to take pride in your learning journey. Contributions welcome - let’s celebrate our wins together!</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Guy Gregory
+    </span>
+  </span>
+<time datetime="2025-07-23T00:00:00+01:00" pubdate>Wed 23 July 2025</time>  <span class="categories">
+    <a class='category' href='https://pedanticjournal.com/category/blog/'>Blog</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="https://pedanticjournal.com/tag/github/">github</a>,    <a class="category" href="https://pedanticjournal.com/tag/mslearn/">mslearn</a>,    <a class="category" href="https://pedanticjournal.com/tag/azure/">azure</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="https://pedanticjournal.com/exam-timeline/">Visualising Microsoft exams</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/responses-api/">Responses API on Azure OpenAI</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/function-calling-voice/">Function calling with voice</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/gpt-4o-mini/">GPT-4o mini available in Azure OpenAI</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="https://pedanticjournal.com/category/blog/">Blog</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="https://pedanticjournal.com/tag/github/">github</a>,    <a href="https://pedanticjournal.com/tag/mslearn/">mslearn</a>,    <a href="https://pedanticjournal.com/tag/azure/">azure</a>,    <a href="https://pedanticjournal.com/tag/azureai/">azureai</a>,    <a href="https://pedanticjournal.com/tag/openai/">openai</a>,    <a href="https://pedanticjournal.com/tag/voice/">voice</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://linkedin.com/in/guygregory" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/guygregory" target="_blank">GitHub</a></li>
+            <li><a href="https://x.com/guygregory" target="_blank">X</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://devblogs.microsoft.com/foundry/" target="_blank">Azure AI Foundry Blog</a></li>
+            <li><a href="https://azure.microsoft.com/blog/" target="_blank">Microsoft Azure Blog</a></li>
+            <li><a href="https://ukstories.microsoft.com/" target="_blank">Microsoft UK Stories</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2024&ndash;2025  Guy Gregory &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="https://pedanticjournal.com/theme/js/modernizr-2.0.js"></script>
+  <script src="https://pedanticjournal.com/theme/js/ender.js"></script>
+  <script src="https://pedanticjournal.com/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
