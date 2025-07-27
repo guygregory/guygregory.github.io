@@ -1,1 +1,3 @@
-generate/.env
+generate/
+generate/structured.py
+generate/structured.py
