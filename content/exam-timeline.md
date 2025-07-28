@@ -6,7 +6,8 @@ Slug: exam-timeline
 Author: Guy Gregory
 Summary: How to build yourself a free automated Microsoft exam dashboard, using Python, GitHub Actions, and Azure Static Web Apps
 
-<a href="https://exams.guygregory.com" target="_blank" rel="noopener noreferrer"><img width="2217" height="1503" alt="image" src="https://github.com/user-attachments/assets/708b3d1c-3e3d-48c3-aefb-74d983a85d00" /></a>
+<a href="https://exams.guygregory.com" target="_blank" rel="noopener noreferrer"><img width="2217" height="1503" alt="image" src="https://github.com/user-attachments/assets/6d785050-94a8-428a-81f2-15c59d4da096" /></a>
+
 
 After over 20 years spent earning Microsoft certifications, and with my recent success on the [GH-900](https://learn.microsoft.com/credentials/certifications/github-foundations/) exam, I started reflecting on just how far I’ve come. That’s when the idea for [`exam-timeline`](https://github.com/guygregory/exam-timeline) was born. I wanted a fun, interactive way to visualise my certification journey and maybe inspire others who are on a similar path. There’s something satisfying about seeing all those milestones lined up, and I thought: why not make it easy for anyone to do the same?
 
