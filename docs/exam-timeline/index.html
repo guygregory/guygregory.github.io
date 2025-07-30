@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Visualising Microsoft exams &mdash; Pedantic Journal</title>
+  <title>AI-powered exam dashboard &mdash; Pedantic Journal</title>
   <meta name="author" content="Guy Gregory">
 
 
@@ -51,15 +51,31 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Visualising Microsoft exams</h1>
+      <h1 class="entry-title">AI-powered exam dashboard</h1>
     <p class="meta">
 <time datetime="2025-07-23T00:00:00+01:00" pubdate>Wed 23 July 2025</time>    </p>
 </header>
 
   <div class="entry-content"><p><a href="https://exams.guygregory.com"><img width="2217" height="1503" alt="image" src="https://github.com/user-attachments/assets/3aef88b7-aa2e-4d25-9d3b-b0d76bdd7766" /></a></p>
-<p>After over 20 years spent earning Microsoft certifications, and with my recent success on the <a href="https://learn.microsoft.com/credentials/certifications/github-foundations/">GH-900</a> exam, I started reflecting on just how far I’ve come. That’s when the idea for <a href="https://github.com/guygregory/exam-timeline"><code>exam-timeline</code></a> was born. I wanted a fun, interactive way to visualise my certification journey and maybe inspire others who are on a similar path. There’s something satisfying about seeing all those milestones lined up, and I thought: why not make it easy for anyone to do the same?</p>
-<p>The initial prototype came together in under half an hour of vibe-coding, thanks to <a href="https://github.com/copilot">GitHub Copilot</a> for the coding assist and using the Free tier of <a href="https://learn.microsoft.com/azure/static-web-apps/overview">Azure Static Web Apps</a> for the super-quick deployment and tight GitHub integration. From there, I spent a few more hours automating the extraction of exam data, and wiring up <a href="https://docs.github.com/en/actions">GitHub Actions</a> - mainly delegating the hard work to the <a href="https://docs.github.com/en/copilot/how-tos/agents/copilot-coding-agent">GitHub Coding Agent</a>. The end result is a project that’s both personal and practical, with a workflow that anyone can replicate.</p>
-<p>Here’s how it all works: at its core, the project uses a <a href="https://github.com/guygregory/exam-timeline/blob/main/passed_exams.py">Python script</a> to download your Microsoft certification transcript, based on your <a href="https://learn.microsoft.com/users/me/transcript">Transcript sharing code</a>. You can run this script independently if you just want a quick export for your own records or to feed into another tool. But if you’re feeling ambitious, you can <a href="https://github.com/guygregory/exam-timeline">clone the entire repo</a>, customise it, and deploy your own version in minutes. The daily automation fetches your latest transcript, stores it in the repo as a .csv file, which feeds a simple Plotly-powered (JS) dashboard. Here's how it gets the transcript from Microsoft Learn:</p>
+<p>After over 20 years spent earning Microsoft certifications, and with my recent success on the <a href="https://learn.microsoft.com/credentials/certifications/github-foundations/">GH-900</a> exam, I started reflecting on just how far I’ve come. That’s when the idea for <a href="https://github.com/guygregory/exam-timeline"><code>exam-timeline</code></a> was born. I wanted a fun, interactive way to visualise my certification journey and to try building a simple AI app that used LLMs from <a href="https://gh.io/models">GitHub Models</a>.</p>
+<p>The initial prototype came together in under half an hour of vibe-coding, thanks to <a href="https://github.com/copilot">GitHub Copilot</a> for the coding assist and using the Free tier of <a href="https://learn.microsoft.com/azure/static-web-apps/overview">Azure Static Web Apps</a> for the super-quick deployment and tight GitHub integration. From there, I spent a few more hours automating the extraction of exam data, and wiring up <a href="https://docs.github.com/en/actions">GitHub Actions</a> - mainly delegating the hard work to the <a href="https://docs.github.com/en/copilot/how-tos/agents/copilot-coding-agent">GitHub Coding Agent</a>. A few days later, I added the "AI recommendation" feature, using a few lines of Python. The end result is a project that’s both personal and practical, with a workflow that anyone can replicate.</p>
+<h2>How it works - AI-powered recommendation via GitHub Models</h2>
+<p>Let's start with the the element I'm personally most excited about - The AI recommendation to recommend the 'next logical exam'.</p>
+<ul>
+<li>After the transcript is downloaded from Microsoft Learn, the workflow calls <a href="https://github.com/guygregory/exam-timeline/blob/main/ai_exam_recommender.py">a Python script</a>, and this inserts the learner's transcript into the user prompt of the LLM.</li>
+<li>The system prompt guides the LLM to make a recommendation for a next logical exam, and to avoid choosing an exam that the learner has already completed.</li>
+<li>The script uses OpenAI's gpt-4o model, which is hosted by GitHub Models (on Azure AI)</li>
+<li>Because this script is called directly from GitHub Actions, <a href="https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions">auth works seamlessly</a>. I only had to add <code>models: read</code> into the <code>permissions</code> section of the workflow for it to work.</li>
+<li>In order to return a consistent response, <a href="https://learn.microsoft.com/azure/ai-foundry/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&amp;pivots=programming-language-python">Structured Outputs</a> are used with the <a href="https://learn.microsoft.com/azure/ai-foundry/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&amp;pivots=programming-language-python#supported-schemas-and-limitations">enum type</a> to only return an answer from the <a href="https://github.com/guygregory/exam-timeline/blob/main/priority_ARB_exams.csv">list of prioritised exams</a>.</li>
+<li>Leverages the <a href="https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits">GitHub Models quota, included in the GitHub Copilot plans (including free)</a></li>
+<li>The output of this script is a JSON object which includes the recommendation: <code>{"exam_code":"AZ-305"}</code>, which is then inserted into the button in <a href="https://github.com/guygregory/exam-timeline/blob/main/index.html"><code>index.html</code></a></li>
+</ul>
+<h3>How it works - Data extraction from Microsoft Learn</h3>
+<p>To extract the exam information, the project uses a <a href="https://github.com/guygregory/exam-timeline/blob/main/passed_exams.py">Python script</a> to download the Microsoft certification transcript, based on the <a href="https://learn.microsoft.com/users/me/transcript">Transcript sharing code</a>.</p>
+<blockquote>
+<p><strong>Disclaimer:</strong> The use of the Microsoft Learn API in this way is not officially supported or documented, and while suitable for a simple hobby project, is not appropriate for a production application. Future API availability is not guaranteed. For commercial integrations, please contact your Microsoft representative.</p>
+</blockquote>
+<p>You can run this script independently if you just want a quick export for your own records or to feed into another tool. But if you’re feeling ambitious, you can <a href="https://github.com/guygregory/exam-timeline">clone the entire repo</a>, customise it, and deploy your own version in minutes. The daily automation fetches your latest transcript, stores it in the repo as a .csv file, which feeds a simple Plotly-powered (JS) dashboard. Here's how it gets the transcript from Microsoft Learn:</p>
 <div class="highlight"><pre><span></span><code><span class="n">API_ENDPOINT_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;https://learn.microsoft.com/api/profiles/transcript/share/</span><span class="si">{share_id}</span><span class="s2">?locale=</span><span class="si">{locale}</span><span class="s2">&quot;</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="n">API_ENDPOINT_TEMPLATE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">share_id</span><span class="o">=</span><span class="n">share_id</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="n">locale</span><span class="p">)</span>
@@ -72,9 +88,14 @@
 <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div>
 
+<p>alternatively, using cURL</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-f<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;User-Agent: Mozilla/5.0 (compatible; MSFTTranscriptFetcher/1.0)&quot;</span><span class="w"> </span><span class="s2">&quot;https://learn.microsoft.com/api/profiles/transcript/share/</span><span class="si">${</span><span class="nv">share_id</span><span class="si">}</span><span class="s2">?locale=</span><span class="si">${</span><span class="nv">locale</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
 <p>If you want to try this yourself, just remember: your Microsoft transcript may contain sensitive personal information, like your name and email address. Thankfully, <a href="https://learn.microsoft.com/users/me/transcript">Microsoft Learn</a> lets you adjust this before sharing anything publicly.</p>
 <p><img width="756" height="452" alt="image" src="https://github.com/user-attachments/assets/ccaca094-8d3f-41e5-9095-1d145bb80559" /></p>
-<p>Whether you’re looking to track your own certification milestones, show off your progress, or just experiment with Python, GitHub Actions, and Azure Static Websites, I hope my little <code>exam-timeline</code> project inspires you to take pride in your learning journey. Contributions welcome!</p></div>
+<p>Spending time on this project really helped me deepen my knowledge around GitHub Actions, and especially how they can be integrated with GitHub Models for <a href="https://githubnext.com/projects/continuous-ai/">"Continuous AI"</a>. It also made me consider how in future, we might AI-enable data like this using broadly adopted standards like MCP. Big thanks to a couple of colleagues for their input and advice on this project, namely fellow PSA, Bojan Vrhovnik and Allison Waldmann from the Microsoft Learn platform team.</p>
+<p>Finally, if you're looking to experiment with Python, GitHub Actions, GitHub Models, and Azure Static Websites, I hope my little <code>exam-timeline</code> project inspires you to take pride in your learning journey. Contributions welcome!</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -97,7 +118,7 @@
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="https://pedanticjournal.com/exam-timeline/">Visualising Microsoft exams</a>
+          <a href="https://pedanticjournal.com/exam-timeline/">AI-powered exam dashboard</a>
       </li>
       <li class="post">
           <a href="https://pedanticjournal.com/responses-api/">Responses API on Azure OpenAI</a>
