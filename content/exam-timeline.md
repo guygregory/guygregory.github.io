@@ -14,7 +14,7 @@ After over 20 years spent earning Microsoft certifications, and with my recent s
 The initial prototype came together in under half an hour of vibe-coding, thanks to [GitHub Copilot](https://github.com/copilot) for the coding assist and using the Free tier of [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview) for the super-quick deployment and tight GitHub integration. From there, I spent a few more hours automating the extraction of exam data, and wiring up [GitHub Actions](https://docs.github.com/en/actions) - mainly delegating the hard work to the [GitHub Coding Agent](https://docs.github.com/en/copilot/how-tos/agents/copilot-coding-agent). A few days later, I added the "AI recommendation" feature, using a few lines of Python. The end result is a project that’s both personal and practical, with a workflow that anyone can replicate.
 
 ### How it works - AI-powered recommendation via GitHub Models
-Let's start with the the element I'm personally most excited about - The AI recommendation to recommend the 'next logical exam'.
+Let's start with the the feature I'm personally most excited about - The AI recommendation to suggest the 'next logical exam'.
 
 - After the transcript is downloaded from Microsoft Learn, the workflow calls [a Python script](https://github.com/guygregory/exam-timeline/blob/main/ai_exam_recommender.py), and this inserts the learner's transcript into the user prompt of the LLM.
 - The system prompt guides the LLM to make a recommendation for a next logical exam, and to avoid choosing an exam that the learner has already completed.
