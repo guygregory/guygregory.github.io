@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pelican Markdown Test Page &mdash; Pedantic Journal</title>
+  <meta name="author" content="Guy Gregory">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://pedanticjournal.com/images/favicon.png" rel="icon">
+
+  <link href="https://pedanticjournal.com/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="https://pedanticjournal.com/">Pedantic Journal</a></h1>
+    <h2>Thoughts on AI and other subjects.</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/atom.html">Atom</a></li>
+      <li class="active">
+        <a href="https://pedanticjournal.com/category/blog/">Blog</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Pelican Markdown Test Page</h1>
+    <p class="meta">
+<time datetime="2025-07-30T00:00:00+01:00" pubdate>Wed 30 July 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><h1>Examine how Markdown is rendered with Pelican</h1>
+<p>These examples of markdown are a modified form taken from <a href="https://matthewdevaney.com/posts/2019/03/07/build-a-blog-with-pelican-and-python-pt-2-creating-content/">Build A Blog With Pelican And Python - Pt. 2 Creating Content</a>. I did find some issues that I mention as I go through all the examples. I've also augmented the original examples with some additional samples of my own.</p>
+<p>As a nice side affect of putting this page together I now have a reference page should I decide to change the Pelican theme I'm using to ensure that all my other articles are still rendering as expected as this test page contains most, if not all, of the markdown styles that I use on a regular basis.</p>
+<p>For a complete markdown reference refer to <a href="https://www.markdownguide.org/">The Markdown Guide</a>.</p>
+<h2>Markdown Examples Part 1</h2>
+<p>Before you learn anything else you should know be aware of the following:</p>
+<h3>Heading Best Practices</h3>
+<p>Markdown applications don’t agree on how to handle missing blank lines between a heading and the surrounding paragraphs. For compatibility, separate paragraphs and headings with one or more blank lines.</p>
+<h3>Paragraphs</h3>
+<p>To create paragraphs, use a blank line to separate one or more lines of text.</p>
+<h3>Line Breaks</h3>
+<p>To create a line break (&lt;br&gt;), end a line with two or more spaces, and then type return.</p>
+<h3>Some more examples</h3>
+<p>Basic markdown examples are shown below:</p>
+<div class="highlight"><pre><span></span><code>This text is **bold** and this text is also __bold__  
+This text is *italic* and this text is also _italic_  
+This text is **_italic and bold_**
+</code></pre></div>
+
+<p>This text is <strong>bold</strong> and this text is also <strong>bold</strong>   <br>
+This text is <em>italic</em> and this text is also <em>italic</em><br>
+This text is <strong><em>italic and bold</em></strong></p>
+<p>You can add headers to your markdown to divide your posts into related sections:</p>
+<div class="highlight"><pre><span></span><code># A H1 heading  
+## A H2 heading  
+### A H3 heading  
+#### A H4 heading  
+##### A H5 heading  
+###### A H6 heading
+</code></pre></div>
+
+<h1>A H1 heading</h1>
+<h2>A H2 heading</h2>
+<h3>A H3 heading</h3>
+<h4>A H4 heading</h4>
+<h5>A H5 heading</h5>
+<h6>A H6 heading</h6>
+<p>A nice additional way to separate different sections of you post is to insert a horizontal line is to add three or more hyphens:</p>
+<div class="highlight"><pre><span></span><code>---
+</code></pre></div>
+
+<hr>
+<p>In Mathew's original post he defines a list with numbers as:</p>
+<div class="highlight"><pre><span></span><code>A list with numbers:
+1. One
+2. Two
+3. Three
+</code></pre></div>
+
+<p>When rendered this looks like:</p>
+<p>A list with numbers:
+1. One
+2. Two
+3. Three</p>
+<p>There are two issues with this:</p>
+<ol>
+<li>There should be an empty line between the text preceding the list and the list itself. See notes above about adding empty blank lines between headings and paragraphs. This rule applied to everything.</li>
+<li>Typically you don't provide the numbers. All items in the list are preceded with a <code>1.</code> and the list is then automatically numbered. </li>
+</ol>
+<p>The correct way to define a list of numbers is:</p>
+<div class="highlight"><pre><span></span><code>A list with numbers:
+
+1. One
+1. Two
+1. Three
+</code></pre></div>
+
+<p>And this is how it then correctly displays:</p>
+<p>A list with numbers:</p>
+<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ol>
+<p>You can also have a list of number with a sublist of numbers:</p>
+<ol>
+<li>Top Level<ol>
+<li>Sub level 1</li>
+<li>Sub level 2</li>
+</ol>
+</li>
+<li>Top Level Again<ol>
+<li>Sub level again</li>
+</ol>
+</li>
+</ol>
+<p>And the markdown for sublists like this is:</p>
+<div class="highlight"><pre><span></span><code>1. Top Level  
+    1. Sub level 1
+    1. Sub level 2
+1. Top Level Again  
+    1. Sub level again
+</code></pre></div>
+
+<p>The list with bullets example suffers from the same issue as the numbered list in that the example markdown given does not have a blank line between the text and the bulleted list. In markdown you always have to place a blank line:</p>
+<div class="highlight"><pre><span></span><code>A list with bullets:
+
+* One
+* Two
+* Three
+</code></pre></div>
+
+<p>A list with bullets:</p>
+<ul>
+<li>Bullet</li>
+<li>Bullet</li>
+<li>Bullet</li>
+</ul>
+<p>Here's a blockquote:</p>
+<div class="highlight"><pre><span></span><code>&gt; Simple is better than complex
+</code></pre></div>
+
+<blockquote>
+<p>Simple is better than complex</p>
+</blockquote>
+<p>For some reason the example given my Mathew used <code>&amp;gt;</code>. Not sure why.</p>
+<p>Here's the table example in Mathew's post:</p>
+<div class="highlight"><pre><span></span><code>| Column1 | Column 2 | Column 3 |  
+|---|---|---|  
+| Value 1 | Value 2 | Value 3 |  
+| Value 4 | Value 5 | Value 6 |  
+| Value 7 | Value 8 | Value 9 |
+</code></pre></div>
+
+<p>And here is the table rendered:</p>
+<table>
+<thead>
+<tr>
+<th>Column1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Value 1</td>
+<td>Value 2</td>
+<td>Value 3</td>
+</tr>
+<tr>
+<td>Value 4</td>
+<td>Value 5</td>
+<td>Value 6</td>
+</tr>
+<tr>
+<td>Value 7</td>
+<td>Value 8</td>
+<td>Value 9</td>
+</tr>
+<tr>
+<td><br/></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>I'm not sure it it's a Pelican thing or the template used but when rendered this looks really poor in my opinion. One way around this it to use HTML directly with CSS styling. I need to investigate this further.</p>
+<p>Here's a HTML table with CSS Styling:</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-hmp3{background-color:#D2E4FC;text-align:left;vertical-align:top}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-mb3i{background-color:#D2E4FC;text-align:right;vertical-align:top}
+.tg .tg-lqy6{text-align:right;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-baqh" colspan="6">Results</th>
+  </tr>
+  <tr>
+    <td class="tg-hmp3">No</td>
+    <td class="tg-hmp3">Competition</td>
+    <td class="tg-hmp3">John</td>
+    <td class="tg-hmp3">Adam</td>
+    <td class="tg-hmp3">Robert</td>
+    <td class="tg-hmp3">Paul</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Swimming</td>
+    <td class="tg-lqy6">1:30</td>
+    <td class="tg-lqy6">2:05</td>
+    <td class="tg-lqy6">1:15</td>
+    <td class="tg-lqy6">1:41</td>
+  </tr>
+  <tr>
+    <td class="tg-hmp3">2</td>
+    <td class="tg-hmp3">Running</td>
+    <td class="tg-mb3i">15:30</td>
+    <td class="tg-mb3i">14:10</td>
+    <td class="tg-mb3i">15:45</td>
+    <td class="tg-mb3i">16:00</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">3</td>
+    <td class="tg-0lax">Shooting</td>
+    <td class="tg-lqy6">70%</td>
+    <td class="tg-lqy6">55%</td>
+    <td class="tg-lqy6">90%</td>
+    <td class="tg-lqy6">88%</td>
+  </tr>
+</table>
+<p><br/></p>
+<p><a href="https://www.tablesgenerator.com/html_tables">Table Generator</a> is one simple way to generate HTML code for tables but there are many out there to choose from.</p>
+<hr>
+<h2>Markdown Examples Part 2</h2>
+<p>Images can be displayed in Markdown.  </p>
+<p>Text within the square brackets is the image name. The path to the image goes between the round brackets.<br>
+The {static} tag indicates the image is stored in the content folder. This setting can be changed in <code>pelicanconf.py</code>.</p>
+<p><img alt="python logo" src="https://pedanticjournal.com/images/python_icon.png"></p>
+<p>Links to downloadable content such as PDF files are written similarly to image files but with no ! symbol at the beginning.</p>
+<p><a href="https://pedanticjournal.com/pdf/pelican.pdf">Pelican Documentation</a></p>
+<p>A link to a different blog post on our website is written exactly the same.</p>
+<p>Text within the square brackets can be clicked on to travel to the website between the curly brackets.
+The <code>{filename}</code> tag indicates we want to follow the link to a webpage rather than the static file it was generated from.</p>
+<p><a href="{filename}/articles/20200223_markdown_examples.md">First Post</a></p>
+<p>Or we can link to another external website by supplying the web address.</p>
+<p><a href="https://pypi.org">Python Package Index</a></p>
+<p>Refer to Mathew's page directly for the setting that need to be added to the <code>peliconconf.py</code> file. One small disadvantage of having to define links using <code>{static}</code> or <code>{filename}</code> is that it makes editing the markdown files in a editor slightly more difficult as you are not actually going to see a preview or inline rendering of the link content. A small annoyance. </p>
+<hr>
+<h2>Markdown Examples Part 3</h2>
+<p>Code blocks are preceded by an indent (4 spaces), three <code>:</code> symbols and the name of the language.  </p>
+<p>All of the following code will be highlighted while the text is indented.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">do_twice</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper_do_twice</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">wrapper_do_twice</span>
+
+<span class="nd">@do_twice</span>
+<span class="k">def</span> <span class="nf">say_whee</span><span class="p">(</span><span class="n">some_text</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">some_text</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Whee!&#39;</span>
+<span class="n">say_whee</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<p>And the raw markdown to produce this code block looks like:</p>
+<div class="highlight"><pre><span></span><code>:::python
+def do_twice(func):
+    def wrapper_do_twice(*args, **kwargs):
+        return func(*args, **kwargs).lower()
+    return wrapper_do_twice
+...
+</code></pre></div></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Guy Gregory
+    </span>
+  </span>
+<time datetime="2025-07-30T00:00:00+01:00" pubdate>Wed 30 July 2025</time>  <span class="categories">
+    <a class='category' href='https://pedanticjournal.com/category/blog/'>Blog</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="https://pedanticjournal.com/tag/blog/">blog</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="https://pedanticjournal.com/exam-timeline/">Visualising Microsoft exams</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/responses-api/">Responses API on Azure OpenAI</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/function-calling-voice/">Function calling with voice</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/gpt-4o-mini/">GPT-4o mini available in Azure OpenAI</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="https://pedanticjournal.com/category/blog/">Blog</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="https://pedanticjournal.com/tag/github/">github</a>,    <a href="https://pedanticjournal.com/tag/mslearn/">mslearn</a>,    <a href="https://pedanticjournal.com/tag/azure/">azure</a>,    <a href="https://pedanticjournal.com/tag/azureai/">azureai</a>,    <a href="https://pedanticjournal.com/tag/openai/">openai</a>,    <a href="https://pedanticjournal.com/tag/voice/">voice</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://linkedin.com/in/guygregory" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/guygregory" target="_blank">GitHub</a></li>
+            <li><a href="https://x.com/guygregory" target="_blank">X</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://devblogs.microsoft.com/foundry/" target="_blank">Azure AI Foundry Blog</a></li>
+            <li><a href="https://azure.microsoft.com/blog/" target="_blank">Microsoft Azure Blog</a></li>
+            <li><a href="https://ukstories.microsoft.com/" target="_blank">Microsoft UK Stories</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2024&ndash;2025  Guy Gregory &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="https://pedanticjournal.com/theme/js/modernizr-2.0.js"></script>
+  <script src="https://pedanticjournal.com/theme/js/ender.js"></script>
+  <script src="https://pedanticjournal.com/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
