@@ -1,5 +1,5 @@
 Title: AI-powered exam dashboard
-Date: 2025-07-23
+Date: 2025-07-31
 Category: Blog
 Tags: github, mslearn, azure
 Slug: exam-timeline
@@ -23,8 +23,8 @@ Let's start with the the feature I'm personally most excited about - The AI reco
 - The script uses OpenAI's gpt-4o model, which is hosted by GitHub Models (on Azure AI)
 - Because this script is called directly from GitHub Actions, [auth works seamlessly](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions). I only had to add `models: read` into the `permissions` section of the workflow for it to work.
 - In order to return a consistent response, [Structured Outputs](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&pivots=programming-language-python) are used with the [enum type](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&pivots=programming-language-python#supported-schemas-and-limitations) to only return an answer from the [list of prioritised exams](https://github.com/guygregory/exam-timeline/blob/main/priority_ARB_exams.csv).
-- Leverages the [GitHub Models quota, included in the GitHub Copilot plans (including free)](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits)
 - The output of this script is a JSON object which includes the recommendation: `{"exam_code":"AZ-305"}`, which is then inserted into the button in [`index.html`](https://github.com/guygregory/exam-timeline/blob/main/index.html)
+- This automation uses the [GitHub Models quota, included in the GitHub Copilot plans (including free)](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits)
 
 ### How it works - Data extraction from Microsoft Learn
 To extract the exam information, the project uses a [Python script](https://github.com/guygregory/exam-timeline/blob/main/passed_exams.py) to download the Microsoft certification transcript, based on the [Transcript sharing code](https://learn.microsoft.com/users/me/transcript).
