@@ -16,6 +16,8 @@ The initial prototype came together in under half an hour of vibe-coding, thanks
 ### How it works - AI-powered recommendation via GitHub Models
 Let's start with the the feature I'm personally most excited about - The AI recommendation to suggest the 'next logical exam'.
 
+<a href="https://exams.guygregory.com"><img width="419" height="168" alt="image" src="https://github.com/user-attachments/assets/525fc150-ab85-46f9-9dd9-050703afd9cd" /></a>
+
 - After the transcript is downloaded from Microsoft Learn, the workflow calls [a Python script](https://github.com/guygregory/exam-timeline/blob/main/ai_exam_recommender.py), and this inserts the learner's transcript into the user prompt of the LLM.
 - The system prompt guides the LLM to make a recommendation for a next logical exam, and to avoid choosing an exam that the learner has already completed.
 - The script uses OpenAI's gpt-4o model, which is hosted by GitHub Models (on Azure AI)
