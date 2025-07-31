@@ -53,7 +53,7 @@
 <header>
       <h1 class="entry-title">AI-powered exam dashboard</h1>
     <p class="meta">
-<time datetime="2025-07-23T00:00:00+01:00" pubdate>Wed 23 July 2025</time>    </p>
+<time datetime="2025-07-31T00:00:00+01:00" pubdate>Thu 31 July 2025</time>    </p>
 </header>
 
   <div class="entry-content"><p><a href="https://exams.guygregory.com"><img width="2217" height="1503" alt="image" src="https://github.com/user-attachments/assets/3aef88b7-aa2e-4d25-9d3b-b0d76bdd7766" /></a></p>
@@ -68,8 +68,8 @@
 <li>The script uses OpenAI's gpt-4o model, which is hosted by GitHub Models (on Azure AI)</li>
 <li>Because this script is called directly from GitHub Actions, <a href="https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions">auth works seamlessly</a>. I only had to add <code>models: read</code> into the <code>permissions</code> section of the workflow for it to work.</li>
 <li>In order to return a consistent response, <a href="https://learn.microsoft.com/azure/ai-foundry/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&amp;pivots=programming-language-python">Structured Outputs</a> are used with the <a href="https://learn.microsoft.com/azure/ai-foundry/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&amp;pivots=programming-language-python#supported-schemas-and-limitations">enum type</a> to only return an answer from the <a href="https://github.com/guygregory/exam-timeline/blob/main/priority_ARB_exams.csv">list of prioritised exams</a>.</li>
-<li>Leverages the <a href="https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits">GitHub Models quota, included in the GitHub Copilot plans (including free)</a></li>
 <li>The output of this script is a JSON object which includes the recommendation: <code>{"exam_code":"AZ-305"}</code>, which is then inserted into the button in <a href="https://github.com/guygregory/exam-timeline/blob/main/index.html"><code>index.html</code></a></li>
+<li>This automation uses the <a href="https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits">GitHub Models quota, included in the GitHub Copilot plans (including free)</a></li>
 </ul>
 <h3>How it works - Data extraction from Microsoft Learn</h3>
 <p>To extract the exam information, the project uses a <a href="https://github.com/guygregory/exam-timeline/blob/main/passed_exams.py">Python script</a> to download the Microsoft certification transcript, based on the <a href="https://learn.microsoft.com/users/me/transcript">Transcript sharing code</a>.</p>
@@ -104,7 +104,7 @@
         Guy Gregory
     </span>
   </span>
-<time datetime="2025-07-23T00:00:00+01:00" pubdate>Wed 23 July 2025</time>  <span class="categories">
+<time datetime="2025-07-31T00:00:00+01:00" pubdate>Thu 31 July 2025</time>  <span class="categories">
     <a class='category' href='https://pedanticjournal.com/category/blog/'>Blog</a>
   </span>
   <span class="categories">
