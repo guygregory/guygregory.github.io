@@ -277,3 +277,12 @@ And the raw markdown to produce this code block looks like:
             return func(*args, **kwargs).lower()
         return wrapper_do_twice
     ...    
+
+
+## [Admonitions](https://www.markdownguide.org/hacks/#admonitions)
+
+> :warning: **Warning:** Do not push the big red button.
+
+> :memo: **Note:** Sunrises are beautiful.
+
+> :bulb: **Tip:** Remember to appreciate the little things in life.
