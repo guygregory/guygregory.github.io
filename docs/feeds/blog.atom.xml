@@ -51,11 +51,13 @@
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_key_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;azure&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Some important Azure-specific considerations:
-* &lt;code&gt;model_id&lt;/code&gt; is essentially the 'friendly name' for the model within the LLM tool. I chose a &lt;code&gt;aoai/&lt;/code&gt; prefix, so I could differenciate between Azure models, and OpenAI API models.
-* &lt;code&gt;model_name&lt;/code&gt; is the Azure deployment name - which &lt;em&gt;could&lt;/em&gt; be different from the model name (although it makes sense to keep it the same where possible).
-* &lt;code&gt;api_base&lt;/code&gt; needs to include the &lt;code&gt;openai/v1/&lt;/code&gt; suffix, because the LLM tool isn't able to accept the &lt;code&gt;api_version&lt;/code&gt; from the legacy API. If you're not sure where to find the &lt;foundry resource&gt;, check in the &lt;a href="https://ai.azure.com/foundryProject/overview"&gt;Azure AI Foundry project overview:&lt;/a&gt;
-* &lt;code&gt;api_key_name&lt;/code&gt; is the name of the key you stored in step 2 (I used &lt;code&gt;azure&lt;/code&gt;, but you can use whatever you like, as long as they match)&lt;/p&gt;
+&lt;p&gt;Some important Azure-specific considerations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;model_id&lt;/code&gt; is essentially the 'friendly name' for the model within the LLM tool. I chose a &lt;code&gt;aoai/&lt;/code&gt; prefix, so I could differenciate between Azure models, and OpenAI API models.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;model_name&lt;/code&gt; is the Azure deployment name - which &lt;em&gt;could&lt;/em&gt; be different from the model name (although it makes sense to keep it the same where possible).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;api_base&lt;/code&gt; needs to include the &lt;code&gt;openai/v1/&lt;/code&gt; suffix, because the LLM tool isn't able to accept the &lt;code&gt;api_version&lt;/code&gt; from the legacy API. If you're not sure where to find the &lt;foundry resource&gt;, check in the &lt;a href="https://ai.azure.com/foundryProject/overview"&gt;Azure AI Foundry project overview:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;api_key_name&lt;/code&gt; is the name of the key you stored in step 2 (I used &lt;code&gt;azure&lt;/code&gt;, but you can use whatever you like, as long as they match)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Don't forget to save the YAML file, once you've added all the above details.&lt;/p&gt;
 &lt;h3&gt;4. Testing the Azure AI Foundry model&lt;/h3&gt;
 &lt;p&gt;Now that you've configured the extra models, you should be able to run &lt;code&gt;llm&lt;/code&gt; using the following command:&lt;/p&gt;

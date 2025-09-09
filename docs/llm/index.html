@@ -108,11 +108,13 @@
 <span class="w">  </span><span class="nt">api_key_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
 </code></pre></div>
 
-<p>Some important Azure-specific considerations:
-* <code>model_id</code> is essentially the 'friendly name' for the model within the LLM tool. I chose a <code>aoai/</code> prefix, so I could differenciate between Azure models, and OpenAI API models.
-* <code>model_name</code> is the Azure deployment name - which <em>could</em> be different from the model name (although it makes sense to keep it the same where possible).
-* <code>api_base</code> needs to include the <code>openai/v1/</code> suffix, because the LLM tool isn't able to accept the <code>api_version</code> from the legacy API. If you're not sure where to find the <foundry resource>, check in the <a href="https://ai.azure.com/foundryProject/overview">Azure AI Foundry project overview:</a>
-* <code>api_key_name</code> is the name of the key you stored in step 2 (I used <code>azure</code>, but you can use whatever you like, as long as they match)</p>
+<p>Some important Azure-specific considerations:</p>
+<ul>
+<li><code>model_id</code> is essentially the 'friendly name' for the model within the LLM tool. I chose a <code>aoai/</code> prefix, so I could differenciate between Azure models, and OpenAI API models.</li>
+<li><code>model_name</code> is the Azure deployment name - which <em>could</em> be different from the model name (although it makes sense to keep it the same where possible).</li>
+<li><code>api_base</code> needs to include the <code>openai/v1/</code> suffix, because the LLM tool isn't able to accept the <code>api_version</code> from the legacy API. If you're not sure where to find the <foundry resource>, check in the <a href="https://ai.azure.com/foundryProject/overview">Azure AI Foundry project overview:</a></li>
+<li><code>api_key_name</code> is the name of the key you stored in step 2 (I used <code>azure</code>, but you can use whatever you like, as long as they match)</li>
+</ul>
 <p>Don't forget to save the YAML file, once you've added all the above details.</p>
 <h3>4. Testing the Azure AI Foundry model</h3>
 <p>Now that you've configured the extra models, you should be able to run <code>llm</code> using the following command:</p>
