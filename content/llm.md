@@ -46,7 +46,7 @@ When entering the key, the text isn't echoed back to the console, but you can ch
 
 Before the next step, you'll want to check the path to your llm configuration files:
 
-```bash
+```powershell
 PS C:\Users\gugregor> llm keys path
 C:\Users\gugregor\AppData\Roaming\io.datasette.llm\keys.json
 ```
