@@ -113,4 +113,4 @@ llm "Tell me a joke"
 LLM is a super handy utility which can easily be configured to use Azure AI Foundry models with minimal effort. I can see myself using it for a range of simple command-line tasks, and potentially even for more advanced scripting. It doesn't have the power or advanced features of something like Semantic Kernel, but that level of functionality isn't always required. Try it out today!
 
 LLM - GitHub.com<br>
-https://github.com/simonw/llm
+[https://github.com/simonw/llm](https://github.com/simonw/llm)
