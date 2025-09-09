@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using LLM with Azure AI Foundry &mdash; Pedantic Journal</title>
+  <meta name="author" content="Guy Gregory">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://pedanticjournal.com/images/favicon.png" rel="icon">
+
+  <link href="https://pedanticjournal.com/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="https://pedanticjournal.com/">Pedantic Journal</a></h1>
+    <h2>Thoughts on AI and other subjects.</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/atom.html">Atom</a></li>
+      <li class="active">
+        <a href="https://pedanticjournal.com/category/blog/">Blog</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Using LLM with Azure AI Foundry</h1>
+    <p class="meta">
+<time datetime="2025-09-09T00:00:00+01:00" pubdate>Tue 09 September 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><h3>Getting Started with LLM</h3>
+<p>I'm a big fan of <a href="https://simonwillison.net/">Simon Willison's</a> work, and recently, I had a need to do some simple inference using gpt-5 on Azure AI Foundry. In the past I've used GitHub Models for this type of work, and that works pretty well up to a certain point:</p>
+<div class="highlight"><pre><span></span><code>gh<span class="w"> </span>models<span class="w"> </span>run<span class="w"> </span>openai/gpt-4.1<span class="w"> </span><span class="s2">&quot;Tell me a joke&quot;</span>
+</code></pre></div>
+
+<p>However, I was running into a few challenges with token limits, and usage limits on GitHub Models, so I wanted to switch to Azure AI Foundry instead - I thought it'd be a great opportunity to try out <a href="https://github.com/simonw/llm">Simon's hugely popular LLM CLI tool</a>.</p>
+<div class="highlight"><pre><span></span><code>llm<span class="w"> </span><span class="s2">&quot;Tell me a joke&quot;</span>
+</code></pre></div>
+
+<h3>1. Installation</h3>
+<p>Installation was a breeze - with a simple:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>llm
+</code></pre></div>
+
+<h3>2. Storing an API key</h3>
+<p>Next, I needed to store my Azure AI Foundry API key, retrieved from the <a href="https://ai.azure.com/foundryProject/overview">Azure AI Foundry project overview:</a></p>
+<p><img width="1025" height="425" alt="image" src="https://github.com/user-attachments/assets/60b03e48-598a-42fc-a447-9747559bae23" /></p>
+<p>By default, <code>llm keys set</code> will store an OpenAI API key, so adding <code>azure</code> on the end allowed me to differenciate it later</p>
+<div class="highlight"><pre><span></span><code>llm<span class="w"> </span>keys<span class="w"> </span><span class="nb">set</span><span class="w"> </span>azure
+</code></pre></div>
+
+<p>When entering the key, the text isn't echoed back to the console, but you can check the keys.json file in the next step if you need to confirm.</p>
+<h3>3. Configuring the Azure AI Foundry Models</h3>
+<p>Before the next step, you'll want to check the path to your llm configuration files:</p>
+<div class="highlight"><pre><span></span><code>PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\g</span>ugregor&gt;<span class="w"> </span>llm<span class="w"> </span>keys<span class="w"> </span>path
+C:<span class="se">\U</span>sers<span class="se">\g</span>ugregor<span class="se">\A</span>ppData<span class="se">\R</span>oaming<span class="se">\i</span>o.datasette.llm<span class="se">\k</span>eys.json
+</code></pre></div>
+
+<p>...so you can open the folder, and create a new (blank text) file called <code>extra-openai-models.yaml</code>. This file will be used to define any models from Azure AI Foundry.</p>
+<p><img width="978" height="474" alt="image" src="https://github.com/user-attachments/assets/942e1fcc-d1ae-44c1-8707-b70cb64b2aac" /></p>
+<p>In this YAML file, you'll want to provide the details of your Azure AI Foundry model deployments:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aoai/gpt-5</span>
+<span class="w">  </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5</span>
+<span class="w">  </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://&lt;foundry resource&gt;.openai.azure.com/openai/v1/</span>
+<span class="w">  </span><span class="nt">api_key_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aoai/gpt-5-mini</span>
+<span class="w">  </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5-mini</span>
+<span class="w">  </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://&lt;foundry resource&gt;.openai.azure.com/openai/v1/</span>
+<span class="w">  </span><span class="nt">api_key_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aoai/gpt-5-nano</span>
+<span class="w">  </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5-nano</span>
+<span class="w">  </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://&lt;foundry resource&gt;.openai.azure.com/openai/v1/</span>
+<span class="w">  </span><span class="nt">api_key_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aoai/gpt-4.1</span>
+<span class="w">  </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4.1</span>
+<span class="w">  </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://&lt;foundry resource&gt;.openai.azure.com/openai/v1/</span>
+<span class="w">  </span><span class="nt">api_key_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+</code></pre></div>
+
+<p>Some important Azure-specific considerations:
+- <code>model_id</code> is essentially the 'friendly name' for the model within the LLM tool. I chose a <code>aoai/</code> prefix, so I could differenciate between Azure models, and OpenAI API models.
+- <code>model_name</code> is the Azure deployment name - which <em>could</em> be different from the model name (although it makes sense to keep it the same where possible).
+- <code>api_base</code> needs to include the <code>openai/v1/</code> suffix, because the LLM tool isn't able to accept the <code>api_version</code> from the legacy API. If you're not sure where to find the <foundry resource>, check in the <a href="https://ai.azure.com/foundryProject/overview">Azure AI Foundry project overview:</a>
+- <code>api_key_name</code> is the name of the key you stored in step 2 (I used <code>azure</code>, but you can use whatever you like, as long as they match)</p>
+<p>Don't forget to save the YAML file, once you've added all the above details.</p>
+<h3>4. Testing the Azure AI Foundry model</h3>
+<p>Now that you've configured the extra models, you should be able to run <code>llm</code> using the following command:</p>
+<div class="highlight"><pre><span></span><code>llm<span class="w"> </span><span class="s2">&quot;Tell me a joke&quot;</span><span class="w"> </span>-m<span class="w"> </span>aoai/gpt-5-mini
+</code></pre></div>
+
+<p>the <code>-m</code> parameter specifies the model that you've defined in the YAML file from step 3.</p>
+<h3>5. Setting the default model (optional, recommended)</h3>
+<p>If you're going to use Azure AI Foundry models regularly, then you may want to change the default model over like this:</p>
+<div class="highlight"><pre><span></span><code>llm<span class="w"> </span>models<span class="w"> </span>default<span class="w"> </span>aoai/gpt-5-mini
+</code></pre></div>
+
+<p>That way, you don't need to specify the model using the <code>-m</code> parameter each time, so you get an easy to remember, concise command:</p>
+<div class="highlight"><pre><span></span><code>llm<span class="w"> </span><span class="s2">&quot;Tell me a joke&quot;</span>
+</code></pre></div>
+
+<h3>Conclusion</h3>
+<p>LLM is a super handy utility which can easily be configured to use Azure AI Foundry models with minimal effort. I can see myself using it for a range of simple command-line tasks, and potentially even for more advanced scripting. It doesn't have the power or advanced features of something like Semantic Kernel, but that level of functionality isn't always required. Try it out today!</p>
+<p>LLM - GitHub.com<br>
+https://github.com/simonw/llm</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Guy Gregory
+    </span>
+  </span>
+<time datetime="2025-09-09T00:00:00+01:00" pubdate>Tue 09 September 2025</time>  <span class="categories">
+    <a class='category' href='https://pedanticjournal.com/category/blog/'>Blog</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="https://pedanticjournal.com/tag/azure/">azure</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="https://pedanticjournal.com/llm/">Using LLM with Azure AI Foundry</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/exam-timeline/">AI-powered exam dashboard</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/responses-api/">Responses API on Azure OpenAI</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/function-calling-voice/">Function calling with voice</a>
+      </li>
+      <li class="post">
+          <a href="https://pedanticjournal.com/gpt-4o-mini/">GPT-4o mini available in Azure OpenAI</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="https://pedanticjournal.com/category/blog/">Blog</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="https://pedanticjournal.com/tag/azure/">azure</a>,    <a href="https://pedanticjournal.com/tag/github/">github</a>,    <a href="https://pedanticjournal.com/tag/mslearn/">mslearn</a>,    <a href="https://pedanticjournal.com/tag/azureai/">azureai</a>,    <a href="https://pedanticjournal.com/tag/openai/">openai</a>,    <a href="https://pedanticjournal.com/tag/voice/">voice</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://linkedin.com/in/guygregory" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/guygregory" target="_blank">GitHub</a></li>
+            <li><a href="https://x.com/guygregory" target="_blank">X</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://devblogs.microsoft.com/foundry/" target="_blank">Azure AI Foundry Blog</a></li>
+            <li><a href="https://azure.microsoft.com/blog/" target="_blank">Microsoft Azure Blog</a></li>
+            <li><a href="https://ukstories.microsoft.com/" target="_blank">Microsoft UK Stories</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2024&ndash;2025  Guy Gregory &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="https://pedanticjournal.com/theme/js/modernizr-2.0.js"></script>
+  <script src="https://pedanticjournal.com/theme/js/ender.js"></script>
+  <script src="https://pedanticjournal.com/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

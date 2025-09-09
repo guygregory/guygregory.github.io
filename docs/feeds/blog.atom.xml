@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pedantic Journal - Blog</title><link href="https://pedanticjournal.com/" rel="alternate"/><link href="https://pedanticjournal.com/feeds/blog.atom.xml" rel="self"/><id>https://pedanticjournal.com/</id><updated>2025-07-31T00:00:00+01:00</updated><subtitle>Thoughts on AI and other subjects.</subtitle><entry><title>AI-powered exam dashboard</title><link href="https://pedanticjournal.com/exam-timeline/" rel="alternate"/><published>2025-07-31T00:00:00+01:00</published><updated>2025-07-31T00:00:00+01:00</updated><author><name>Guy Gregory</name></author><id>tag:pedanticjournal.com,2025-07-31:/exam-timeline/</id><summary type="html">&lt;p&gt;How to build yourself a free, AI-powered Microsoft exam dashboard, using Python, GitHub Actions, GitHub Models, and Azure Static Web Apps&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://exams.guygregory.com"&gt;&lt;img width="2217" height="1503" alt="image" src="https://github.com/user-attachments/assets/3aef88b7-aa2e-4d25-9d3b-b0d76bdd7766" /&gt;&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pedantic Journal - Blog</title><link href="https://pedanticjournal.com/" rel="alternate"/><link href="https://pedanticjournal.com/feeds/blog.atom.xml" rel="self"/><id>https://pedanticjournal.com/</id><updated>2025-09-09T00:00:00+01:00</updated><subtitle>Thoughts on AI and other subjects.</subtitle><entry><title>Using LLM with Azure AI Foundry</title><link href="https://pedanticjournal.com/llm/" rel="alternate"/><published>2025-09-09T00:00:00+01:00</published><updated>2025-09-09T00:00:00+01:00</updated><author><name>Guy Gregory</name></author><id>tag:pedanticjournal.com,2025-09-09:/llm/</id><summary type="html">&lt;p&gt;How to configure Simon Willison's popular LLM CLI tool with Azure AI Foundry models&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Getting Started with LLM&lt;/h3&gt;
+&lt;p&gt;I'm a big fan of &lt;a href="https://simonwillison.net/"&gt;Simon Willison's&lt;/a&gt; work, and recently, I had a need to do some simple inference using gpt-5 on Azure AI Foundry. In the past I've used GitHub Models for this type of work, and that works pretty well up to a certain point:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gh&lt;span class="w"&gt; &lt;/span&gt;models&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;openai/gpt-4.1&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell me a joke&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;However, I was running into a few challenges with token limits, and usage limits on GitHub Models, so I wanted to switch to Azure AI Foundry instead - I thought it'd be a great opportunity to try out &lt;a href="https://github.com/simonw/llm"&gt;Simon's hugely popular LLM CLI tool&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;llm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell me a joke&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;1. Installation&lt;/h3&gt;
+&lt;p&gt;Installation was a breeze - with a simple:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;llm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;2. Storing an API key&lt;/h3&gt;
+&lt;p&gt;Next, I needed to store my Azure AI Foundry API key, retrieved from the &lt;a href="https://ai.azure.com/foundryProject/overview"&gt;Azure AI Foundry project overview:&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img width="1025" height="425" alt="image" src="https://github.com/user-attachments/assets/60b03e48-598a-42fc-a447-9747559bae23" /&gt;&lt;/p&gt;
+&lt;p&gt;By default, &lt;code&gt;llm keys set&lt;/code&gt; will store an OpenAI API key, so adding &lt;code&gt;azure&lt;/code&gt; on the end allowed me to differenciate it later&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;llm&lt;span class="w"&gt; &lt;/span&gt;keys&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;azure
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When entering the key, the text isn't echoed back to the console, but you can check the keys.json file in the next step if you need to confirm.&lt;/p&gt;
+&lt;h3&gt;3. Configuring the Azure AI Foundry Models&lt;/h3&gt;
+&lt;p&gt;Before the next step, you'll want to check the path to your llm configuration files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;PS&lt;span class="w"&gt; &lt;/span&gt;C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\g&lt;/span&gt;ugregor&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;llm&lt;span class="w"&gt; &lt;/span&gt;keys&lt;span class="w"&gt; &lt;/span&gt;path
+C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\g&lt;/span&gt;ugregor&lt;span class="se"&gt;\A&lt;/span&gt;ppData&lt;span class="se"&gt;\R&lt;/span&gt;oaming&lt;span class="se"&gt;\i&lt;/span&gt;o.datasette.llm&lt;span class="se"&gt;\k&lt;/span&gt;eys.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;...so you can open the folder, and create a new (blank text) file called &lt;code&gt;extra-openai-models.yaml&lt;/code&gt;. This file will be used to define any models from Azure AI Foundry.&lt;/p&gt;
+&lt;p&gt;&lt;img width="978" height="474" alt="image" src="https://github.com/user-attachments/assets/942e1fcc-d1ae-44c1-8707-b70cb64b2aac" /&gt;&lt;/p&gt;
+&lt;p&gt;In this YAML file, you'll want to provide the details of your Azure AI Foundry model deployments:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;model_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;aoai/gpt-5&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gpt-5&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://&amp;lt;foundry resource&amp;gt;.openai.azure.com/openai/v1/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_key_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;azure&lt;/span&gt;
+
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;model_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;aoai/gpt-5-mini&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gpt-5-mini&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://&amp;lt;foundry resource&amp;gt;.openai.azure.com/openai/v1/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_key_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;azure&lt;/span&gt;
+
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;model_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;aoai/gpt-5-nano&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gpt-5-nano&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://&amp;lt;foundry resource&amp;gt;.openai.azure.com/openai/v1/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_key_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;azure&lt;/span&gt;
+
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;model_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;aoai/gpt-4.1&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gpt-4.1&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://&amp;lt;foundry resource&amp;gt;.openai.azure.com/openai/v1/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;api_key_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;azure&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Some important Azure-specific considerations:
+- &lt;code&gt;model_id&lt;/code&gt; is essentially the 'friendly name' for the model within the LLM tool. I chose a &lt;code&gt;aoai/&lt;/code&gt; prefix, so I could differenciate between Azure models, and OpenAI API models.
+- &lt;code&gt;model_name&lt;/code&gt; is the Azure deployment name - which &lt;em&gt;could&lt;/em&gt; be different from the model name (although it makes sense to keep it the same where possible).
+- &lt;code&gt;api_base&lt;/code&gt; needs to include the &lt;code&gt;openai/v1/&lt;/code&gt; suffix, because the LLM tool isn't able to accept the &lt;code&gt;api_version&lt;/code&gt; from the legacy API. If you're not sure where to find the &lt;foundry resource&gt;, check in the &lt;a href="https://ai.azure.com/foundryProject/overview"&gt;Azure AI Foundry project overview:&lt;/a&gt;
+- &lt;code&gt;api_key_name&lt;/code&gt; is the name of the key you stored in step 2 (I used &lt;code&gt;azure&lt;/code&gt;, but you can use whatever you like, as long as they match)&lt;/p&gt;
+&lt;p&gt;Don't forget to save the YAML file, once you've added all the above details.&lt;/p&gt;
+&lt;h3&gt;4. Testing the Azure AI Foundry model&lt;/h3&gt;
+&lt;p&gt;Now that you've configured the extra models, you should be able to run &lt;code&gt;llm&lt;/code&gt; using the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;llm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell me a joke&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;aoai/gpt-5-mini
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;the &lt;code&gt;-m&lt;/code&gt; parameter specifies the model that you've defined in the YAML file from step 3.&lt;/p&gt;
+&lt;h3&gt;5. Setting the default model (optional, recommended)&lt;/h3&gt;
+&lt;p&gt;If you're going to use Azure AI Foundry models regularly, then you may want to change the default model over like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;llm&lt;span class="w"&gt; &lt;/span&gt;models&lt;span class="w"&gt; &lt;/span&gt;default&lt;span class="w"&gt; &lt;/span&gt;aoai/gpt-5-mini
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That way, you don't need to specify the model using the &lt;code&gt;-m&lt;/code&gt; parameter each time, so you get an easy to remember, concise command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;llm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell me a joke&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;LLM is a super handy utility which can easily be configured to use Azure AI Foundry models with minimal effort. I can see myself using it for a range of simple command-line tasks, and potentially even for more advanced scripting. It doesn't have the power or advanced features of something like Semantic Kernel, but that level of functionality isn't always required. Try it out today!&lt;/p&gt;
+&lt;p&gt;LLM - GitHub.com&lt;br&gt;
+https://github.com/simonw/llm&lt;/p&gt;</content><category term="Blog"/><category term="azure"/></entry><entry><title>AI-powered exam dashboard</title><link href="https://pedanticjournal.com/exam-timeline/" rel="alternate"/><published>2025-07-31T00:00:00+01:00</published><updated>2025-07-31T00:00:00+01:00</updated><author><name>Guy Gregory</name></author><id>tag:pedanticjournal.com,2025-07-31:/exam-timeline/</id><summary type="html">&lt;p&gt;How to build yourself a free, AI-powered Microsoft exam dashboard, using Python, GitHub Actions, GitHub Models, and Azure Static Web Apps&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://exams.guygregory.com"&gt;&lt;img width="2217" height="1503" alt="image" src="https://github.com/user-attachments/assets/3aef88b7-aa2e-4d25-9d3b-b0d76bdd7766" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;After over 20 years spent earning Microsoft certifications, and with my recent success on the &lt;a href="https://learn.microsoft.com/credentials/certifications/github-foundations/"&gt;GH-900&lt;/a&gt; exam, I started reflecting on just how far I’ve come. That’s when the idea for &lt;a href="https://github.com/guygregory/exam-timeline"&gt;&lt;code&gt;exam-timeline&lt;/code&gt;&lt;/a&gt; was born. I wanted a fun, interactive way to visualise my certification journey and to try building a simple AI app that used LLMs from &lt;a href="https://gh.io/models"&gt;GitHub Models&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The initial prototype came together in under half an hour of vibe-coding, thanks to &lt;a href="https://github.com/copilot"&gt;GitHub Copilot&lt;/a&gt; for the coding assist and using the Free tier of &lt;a href="https://learn.microsoft.com/azure/static-web-apps/overview"&gt;Azure Static Web Apps&lt;/a&gt; for the super-quick deployment and tight GitHub integration. From there, I spent a few more hours automating the extraction of exam data, and wiring up &lt;a href="https://docs.github.com/en/actions"&gt;GitHub Actions&lt;/a&gt; - mainly delegating the hard work to the &lt;a href="https://docs.github.com/en/copilot/how-tos/agents/copilot-coding-agent"&gt;GitHub Coding Agent&lt;/a&gt;. A few days later, I added the "AI recommendation" feature, using a few lines of Python. The end result is a project that’s both personal and practical, with a workflow that anyone can replicate.&lt;/p&gt;
 &lt;h3&gt;How it works - AI-powered recommendation via GitHub Models&lt;/h3&gt;
