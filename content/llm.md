@@ -79,10 +79,10 @@ In this YAML file, you'll want to provide the details of your Azure AI Foundry m
   api_key_name: azure
 ```
 Some important Azure-specific considerations:
-- `model_id` is essentially the 'friendly name' for the model within the LLM tool. I chose a `aoai/` prefix, so I could differenciate between Azure models, and OpenAI API models.
-- `model_name` is the Azure deployment name - which _could_ be different from the model name (although it makes sense to keep it the same where possible).
-- `api_base` needs to include the `openai/v1/` suffix, because the LLM tool isn't able to accept the `api_version` from the legacy API. If you're not sure where to find the <foundry resource>, check in the [Azure AI Foundry project overview:](https://ai.azure.com/foundryProject/overview)
-- `api_key_name` is the name of the key you stored in step 2 (I used `azure`, but you can use whatever you like, as long as they match)
+* `model_id` is essentially the 'friendly name' for the model within the LLM tool. I chose a `aoai/` prefix, so I could differenciate between Azure models, and OpenAI API models.
+* `model_name` is the Azure deployment name - which _could_ be different from the model name (although it makes sense to keep it the same where possible).
+* `api_base` needs to include the `openai/v1/` suffix, because the LLM tool isn't able to accept the `api_version` from the legacy API. If you're not sure where to find the <foundry resource>, check in the [Azure AI Foundry project overview:](https://ai.azure.com/foundryProject/overview)
+* `api_key_name` is the name of the key you stored in step 2 (I used `azure`, but you can use whatever you like, as long as they match)
 
 Don't forget to save the YAML file, once you've added all the above details.
 
