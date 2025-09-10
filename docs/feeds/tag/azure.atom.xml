@@ -8,6 +8,8 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;llm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell me a joke&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;h3&gt;Introduction - what is LLM?&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/simonw/llm"&gt;LLM&lt;/a&gt; is a CLI tool and Python library for interacting with OpenAI, Anthropic’s Claude, Google’s Gemini, Meta’s Llama and dozens of other Large Language Models, both via remote APIs and with models that can be installed and run on your own machine. It's extensible via a vast array of plugins, but supports OpenAI's models out of the box, and &lt;a href="https://llm.datasette.io/en/stable/other-models.html"&gt;"OpenAI-API-compatible" models via a configuration file&lt;/a&gt;. Because Azure OpenAI models are "OpenAI-API-compatible, I opted for the simple approach using the basic &lt;code&gt;llm&lt;/code&gt; tool with no plugins, and the configuration file.&lt;/p&gt;
 &lt;h3&gt;1. Installation&lt;/h3&gt;
 &lt;p&gt;Installation was a breeze - with a simple:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;llm
