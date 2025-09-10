@@ -20,6 +20,9 @@ However, I was running into a few challenges with token limits, and usage limits
 llm "Tell me a joke"
 ```
 
+### Introduction - what is LLM?
+
+[LLM](https://github.com/simonw/llm) is a CLI tool and Python library for interacting with OpenAI, Anthropic’s Claude, Google’s Gemini, Meta’s Llama and dozens of other Large Language Models, both via remote APIs and with models that can be installed and run on your own machine. It's extensible via a vast array of plugins, but supports OpenAI's models out of the box, and ["OpenAI-API-compatible" models via a configuration file](https://llm.datasette.io/en/stable/other-models.html). Because Azure OpenAI models are "OpenAI-API-compatible, I opted for the simple approach using the basic `llm` tool with no plugins, and the configuration file.
 
 ### 1. Installation
 
